@@ -9,7 +9,8 @@ export default function MessageBubble({
     fromCurrentUser,
     onAnswer, 
     originalQuestion, 
-    isCorrectAnswer
+    isCorrectAnswer,
+    onCorrectAnswer
 }) {
     const [isAnswered, setIsAnswered] = useState(false);
     const containerRef = createRef();
@@ -40,7 +41,12 @@ export default function MessageBubble({
         // Callbacks
         setIsAnswered(true);
         onAnswer(message);
+        if(result.correct) onCorrectAnswer?.();
     }
+
+    /* if(isCorrectAnswer){
+        onCorrectAnswer?.();
+    } */
 
     function renderOptions(){
         if(type == "submission"){

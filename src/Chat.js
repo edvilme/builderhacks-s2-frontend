@@ -6,12 +6,13 @@ import MessageBubble from "./MessageBubble";
 import './Chat.css';
 import MessageComposer from "./MessageComposer";
 import SystemBubble from "./SystemBubble";
-import ConfettiExplosion from "@reonomy/react-confetti-explosion";
 import ChatNav from "./ChatNav";
+import Confetti from 'react-confetti'
+
 
 export default function Chat({
   roomId
-}){
+}) {
   console.log(roomId, roomId, roomId)
   const [chatMessages, setChatMessages] = useState([]);
   const [isExploding, setIsExploding] = React.useState(false);
@@ -20,48 +21,58 @@ export default function Chat({
   const userId = localStorage.getItem("username");
   const messageInputRef = createRef(null);
 
-  try{
+  try {
     // Set listener
     useChannelMessage(roomId, 'USER_MESSAGE', message => {
-      setChatMessages( m => [...m, message]);
+      setChatMessages(m => [...m, message]);
     })
-  } catch(e){
+  } catch (e) {
     console.log(e)
   }
-  if(!roomId){
+  if (!roomId) {
     return <div>Error</div>
   }
 
-  async function send(){
+  async function send() {
     await hopServer.channels.publishMessage(roomId, 'USER_MESSAGE', {
       ...messageInputRef.current.value,
       author: userId,
     })
   }
 
-	return (
+  return (
     <div className="container">
       <ChatNav roomId={roomId}></ChatNav>
       <main ref={mainViewRef}>
-        {chatMessages.map((m, i) => ( m.type == "join" ? <SystemBubble user={m.user}></SystemBubble> :
-          <MessageBubble 
+        {chatMessages.map((m, i) => (m.type == "join" ? <SystemBubble user={m.user}></SystemBubble> :
+          <MessageBubble
             type={m.type}
             answer={m.answer}
-            author={m.author} 
+            author={m.author}
             content={m.content}
             fromCurrentUser={m.author == userId}
             originalQuestion={m.originalQuestion}
             isCorrectAnswer={m.isCorrectAnswer}
             onAnswer={(data) => {
               hopServer.channels.publishMessage(roomId, 'USER_MESSAGE', {
-                author: userId, 
+                author: userId,
                 ...data
               })
+            }}
+            onCorrectAnswer={() => {
+              setIsExploding(true)
+              setTimeout(()=>{
+                setIsExploding(false)
+              }, 4_000)
             }}
           ></MessageBubble>
         ))}
       </main>
-      <MessageComposer className="toolbar" ref={messageInputRef} onSubmit={send}></MessageComposer> 
+      <MessageComposer className="toolbar" ref={messageInputRef} onSubmit={send}></MessageComposer>
+      {
+        isExploding && <Confetti recycle={false}/>
+      }
+
     </div>
-	)
+  )
 }

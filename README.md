@@ -72,3 +72,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 # Credits
 - Edvilme
 https://github.com/zzish/react-latex
+https://github.com/alampros/react-confetti
