@@ -63,23 +63,18 @@ export default class MessageComposer extends React.Component {
                     strokeWidth={this.state.sketchToolWidth}
                     eraseMode={this.state.sketchTool == "eraser"}
                 ></DrawingComposer>,
-                <div style={{
-                    display: 'flex', 
-                    alignItems: 'center'
-                }}>
-                    <DrawingComposerToolbar
-                        onChangeStrokeColor={(color) => {
-                            this.setState({sketchToolColor: color})
-                        }}
-                        onChangeStrokeWidth={(width) => {
-                            this.setState({sketchToolWidth: width})
-                        }}
-                        onChangeTool={(tool) => {
-                            this.setState({sketchTool: tool});
-                            this.sketchpadRef.current?.eraseMode(tool == "eraser")
-                        }}
-                    ></DrawingComposerToolbar>
-                </div>
+                <DrawingComposerToolbar
+                    onChangeStrokeColor={(color) => {
+                        this.setState({sketchToolColor: color})
+                    }}
+                    onChangeStrokeWidth={(width) => {
+                        this.setState({sketchToolWidth: width})
+                    }}
+                    onChangeTool={(tool) => {
+                        this.setState({sketchTool: tool});
+                        this.sketchpadRef.current?.eraseMode(tool == "eraser")
+                    }}
+                ></DrawingComposerToolbar>
             ]
         } else {
             return [
@@ -124,7 +119,7 @@ export default class MessageComposer extends React.Component {
                         <option value="comparison_math_equality">Math question</option>
                     </optgroup>
                 </select>
-                <div style={{ flex: 1 }}>
+                <div style={{ flex: 1, display: 'flex', alignItems: 'center' }}>
                     {this.renderInput()}
                 </div>
             </div>

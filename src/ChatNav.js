@@ -5,10 +5,8 @@ export default function ChatNav({
 }){
     const [username, setUsername] = useState( localStorage.getItem("username") )
     return (
-        <nav style={{
-            display: 'flex', 
-            padding: '8px 16px', 
-            borderBottom: '1px solid gray'
+        <nav  className="chat-navbar" style={{
+            padding: '16px', 
         }}>
             <div>πChat</div>
             <div style={{

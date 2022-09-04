@@ -12,7 +12,7 @@
 }
 
 .bubble-container .bubble {
-    background: cyan;
+    background: rgb(220, 220, 220);
     padding: 16px;
     border-radius: 16px;
     display: inline-block;

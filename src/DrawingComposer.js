@@ -25,6 +25,9 @@ export default class DrawingComposer extends React.Component {
                         const data = await this.canvasRef.current.exportImage('png');
                         this.data = data;
                     }}
+                    style={{
+                        border: "none"
+                    }}
                 >
                 </ReactSketchCanvas>
             </div>
