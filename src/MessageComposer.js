@@ -1,4 +1,7 @@
 import React, { createRef } from "react";
+import { ReactSketchCanvas } from "react-sketch-canvas";
+import DrawingComposer from "./DrawingComposer";
+import DrawingComposerToolbar from "./DrawingComposerToolbar";
 
 
 export default class MessageComposer extends React.Component {
@@ -7,22 +10,27 @@ export default class MessageComposer extends React.Component {
         this.inputRef = createRef(null);
         this.typeRef = createRef(null);
         this.answerRef = createRef(null);
+        this.sketchpadRef = createRef(null);
         this.state = {
-            type: "message"
+            type: "message",
+            sketchTool: "pen", 
+            sketchToolWidth: 1,
+            sketchToolColor: 'black'
         }
     }
 
     get value() {
         return {
-            content: this.inputRef?.current?.innerText,
-            type: this.typeRef?.current?.value,
-            answer: this.answerRef?.current?.value
+            type: this.state.type, 
+            answer: this.typeRef?.current?.value, 
+            content: this.state.type != "sketch" ? this.inputRef?.current?.innerText : this.sketchpadRef?.current?.data
         }
     }
 
     submit() {
         if (this.value.content == "") return;
         this.props.onSubmit?.();
+        this.setState({type: "message"});
         try{
             this.inputRef.current.innerHTML = "";
             this.typeRef.current.value = "message";
@@ -47,10 +55,32 @@ export default class MessageComposer extends React.Component {
                     }}
                 ></div>
             )
-        } else if (this.state.type == "canvas") {
-            return (
-                <div>This is a canvas</div>
-            )
+        } else if (this.state.type == "sketch") {
+            return [
+                <DrawingComposer
+                    ref={this.sketchpadRef}
+                    strokeColor={this.state.sketchToolColor}
+                    strokeWidth={this.state.sketchToolWidth}
+                    eraseMode={this.state.sketchTool == "eraser"}
+                ></DrawingComposer>,
+                <div style={{
+                    display: 'flex', 
+                    alignItems: 'center'
+                }}>
+                    <DrawingComposerToolbar
+                        onChangeStrokeColor={(color) => {
+                            this.setState({sketchToolColor: color})
+                        }}
+                        onChangeStrokeWidth={(width) => {
+                            this.setState({sketchToolWidth: width})
+                        }}
+                        onChangeTool={(tool) => {
+                            this.setState({sketchTool: tool});
+                            this.sketchpadRef.current?.eraseMode(tool == "eraser")
+                        }}
+                    ></DrawingComposerToolbar>
+                </div>
+            ]
         } else {
             return [
                 <div ref={this.inputRef}
@@ -80,9 +110,10 @@ export default class MessageComposer extends React.Component {
                     onChange={(e) => {
                         this.setState({ type: e.target.value })
                     }}
+                    value={this.state.type}
                 >
                     <option value="message">Message</option>
-                    <option value="canvas">Drawing board</option>
+                    <option value="sketch">Drawing board</option>
                     <optgroup label="Text questions">
                         <option value="comparison_text_strict">Text? Strict</option>
                         <option value="comparison_text_medium">Text? Medium</option>

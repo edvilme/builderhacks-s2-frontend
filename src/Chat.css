@@ -3,6 +3,7 @@
   flex-direction: column;
   height: 100vh;
   background: whitesmoke;
+  position: relative;
 }
 
 main {
@@ -15,6 +16,7 @@ main {
   background: rgba(255, 255, 255);
   display: flex;
   max-height: 50vh;
+  position: relative;
 }
 .chat-toolbar>button {
   margin: 16px;
@@ -41,3 +43,15 @@ main {
     content: "Start typing...";
     color: gray;
   }
+
+.chat-toolbar .chat-toolbar-canvas {
+  position: absolute;
+  bottom: 100%;
+  left: 0; right: 0;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-height: 80vh;
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}

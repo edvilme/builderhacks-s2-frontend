@@ -51,7 +51,7 @@ export default function MessageBubble({
                     {isCorrectAnswer ? "✅" : "❌"}
                 </div>
             </div>
-        } else if(type != "message" && onAnswer && !fromCurrentUser && !isAnswered){
+        } else if(type != "message" && type != "sketch" && onAnswer && !fromCurrentUser && !isAnswered){
             return <button onClick={answerQuestion}>Answer</button>
         }
     }
@@ -62,7 +62,9 @@ export default function MessageBubble({
             <div className='bubble'>
                 <div className='author'>{author}</div>
                 <div className='content'>
-                    <Latex>{content}</Latex>
+                    {
+                        type == "sketch" ? <img src={content}></img> : <Latex>{content}</Latex>
+                    }
                 </div>
             </div>
             {renderOptions()}

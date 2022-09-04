@@ -16,6 +16,7 @@
     padding: 16px;
     border-radius: 16px;
     display: inline-block;
+    max-width: 80%;
 }
 .bubble-container.from-current-user>.bubble{
     background: rgb(0, 122, 255);
@@ -28,6 +29,9 @@
 }
 .bubble-container.from-current-user>.bubble>.author {
     display: none;
+}
+.bubble-container>.bubble>.content>img{
+    width: 100%;
 }
 
 .bubble-container button {
