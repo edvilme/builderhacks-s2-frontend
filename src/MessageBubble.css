@@ -1,0 +1,35 @@
+@import url(https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css);
+
+.bubble-container {
+    padding: 16px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.bubble-container.from-current-user{
+    align-items: flex-end;
+}
+
+.bubble-container .bubble {
+    background: cyan;
+    padding: 16px;
+    border-radius: 16px;
+    display: inline-block;
+}
+.bubble-container.from-current-user>.bubble{
+    background: rgb(0, 122, 255);
+    color: white;
+}
+
+.bubble-container>.bubble>.author {
+    color: darkgray;
+    font-weight: bold;
+}
+.bubble-container.from-current-user>.bubble>.author {
+    display: none;
+}
+
+.bubble-container button {
+    margin: 4px 0px;
+}

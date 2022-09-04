@@ -1,0 +1,43 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: whitesmoke;
+}
+
+main {
+  flex: 1;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+.chat-toolbar {
+  background: rgba(255, 255, 255);
+  display: flex;
+  max-height: 50vh;
+}
+.chat-toolbar>button {
+  margin: 16px;
+  background: black;
+  border: none;
+  color: white;
+  border-radius: 100px;
+  font-size: 1rem;
+}
+.chat-toolbar .chat-toolbar-input {
+  background: white;
+  padding: 16px;
+  flex: 1;
+  display: flex;
+  column-gap: 16px;
+}
+  .chat-toolbar-input #new-message-bubble, 
+  .chat-toolbar-input input {
+    outline: none;
+    border: none;
+  }
+
+  .chat-toolbar-input #new-message-bubble:empty::after {
+    content: "Start typing...";
+    color: gray;
+  }
