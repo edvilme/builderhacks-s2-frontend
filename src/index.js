@@ -48,10 +48,10 @@ class App extends React.Component {
       }
     }
     // Send joined message
-    /*await hopServer.channels.publishMessage(this.state.safeRoomId, 'USER_MESSAGE', {
+    await hopServer.channels.publishMessage(this.state.safeRoomId, 'USER_MESSAGE', {
       user: localStorage.getItem("username"),
       type: "join"
-    });*/
+    });
   }
   render(){
     return <Chat roomId={this.state.safeRoomId}></Chat>

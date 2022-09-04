@@ -19,7 +19,7 @@ export default class DrawingComposer extends React.Component {
                     ref={this.canvasRef}
                     strokeColor={this.props.strokeColor}
                     strokeWidth={this.props.strokeWidth}
-                    eraserWidth={this.props.eraserWidth}
+                    eraserWidth={this.props.strokeWidth}
                     canvasColor="transparent"
                     onStroke={async () => {
                         const data = await this.canvasRef.current.exportImage('png');

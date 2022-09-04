@@ -117,11 +117,11 @@ export default class MessageComposer extends React.Component {
                         <option value="sketch">Sketch drawing</option>
                     </optgroup>
                     <optgroup label="Questions">
-                        <option value="comparison_text_strict">Text answer (strict comparison)</option>
-                        <option value="comparison_text_medium">Text answer (medium comparison)</option>
-                        <option value="comparison_text_similarity">Text answer (smart comparison)</option>
-                        <option value="comparison_num_strict">Numercial answer</option>
-                        <option value="comparison_math_equality">Math answer</option>
+                        <option value="comparison_text_strict">Text question (strict)</option>
+                        <option value="comparison_text_medium">Text question (medium)</option>
+                        <option value="comparison_text_similarity">Text question (smart)</option>
+                        <option value="comparison_num_strict">Numercial question</option>
+                        <option value="comparison_math_equality">Math question</option>
                     </optgroup>
                 </select>
                 <div style={{ flex: 1 }}>

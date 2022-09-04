@@ -44,10 +44,6 @@ export default function MessageBubble({
         if(result.correct) onCorrectAnswer?.();
     }
 
-    /* if(isCorrectAnswer){
-        onCorrectAnswer?.();
-    } */
-
     function renderOptions(){
         if(type == "submission"){
             return <div style={{
