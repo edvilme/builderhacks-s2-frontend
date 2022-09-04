@@ -119,7 +119,7 @@ export default class MessageComposer extends React.Component {
                         <option value="comparison_math_equality">Math question</option>
                     </optgroup>
                 </select>
-                <div style={{ flex: 1, display: 'flex', alignItems: 'center' }}>
+                <div style={{ flex: 1 }}>
                     {this.renderInput()}
                 </div>
             </div>

@@ -8,7 +8,7 @@ import MessageComposer from "./MessageComposer";
 import SystemBubble from "./SystemBubble";
 import ChatNav from "./ChatNav";
 import Confetti from 'react-confetti'
-
+import Geopattern from 'geopattern';
 
 export default function Chat({
   roomId
@@ -41,7 +41,9 @@ export default function Chat({
   }
 
   return (
-    <div className="container">
+    <div className="container" style={{
+      background: Geopattern.generate(roomId, {color: '#FFF'}).toDataUrl()
+    }}>
       <ChatNav roomId={roomId}></ChatNav>
       <main ref={mainViewRef}>
         {chatMessages.map((m, i) => (m.type == "join" ? <SystemBubble user={m.user}></SystemBubble> :
