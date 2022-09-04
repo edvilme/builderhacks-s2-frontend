@@ -17,7 +17,7 @@ export default function MessageBubble({
 
     async function answerQuestion(){
         // Submission
-        const submission = prompt("Answer here");
+        let submission = prompt("Answer here");
         // Fetch result
         const resultFetch = await fetch('https://builderhacks-backend.hop.sh/test', {
             method: "POST",
