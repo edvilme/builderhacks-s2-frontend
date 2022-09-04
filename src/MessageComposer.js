@@ -22,7 +22,7 @@ export default class MessageComposer extends React.Component {
     get value() {
         return {
             type: this.state.type, 
-            answer: this.typeRef?.current?.value, 
+            answer: this.answerRef?.current?.value, 
             content: this.state.type != "sketch" ? this.inputRef?.current?.innerText : this.sketchpadRef?.current?.data
         }
     }
@@ -112,16 +112,16 @@ export default class MessageComposer extends React.Component {
                     }}
                     value={this.state.type}
                 >
-                    <option value="message">Message</option>
-                    <option value="sketch">Drawing board</option>
-                    <optgroup label="Text questions">
-                        <option value="comparison_text_strict">Text? Strict</option>
-                        <option value="comparison_text_medium">Text? Medium</option>
-                        <option value="comparison_text_similarity">Text? Similar</option>
+                    <optgroup label="Messages">
+                        <option value="message">Text message</option>
+                        <option value="sketch">Sketch drawing</option>
                     </optgroup>
-                    <optgroup label="Number questions">
-                        <option value="comparison_num_strict">Num?</option>
-                        <option value="comparison_math_equality">Math?</option>
+                    <optgroup label="Questions">
+                        <option value="comparison_text_strict">Text answer (strict comparison)</option>
+                        <option value="comparison_text_medium">Text answer (medium comparison)</option>
+                        <option value="comparison_text_similarity">Text answer (smart comparison)</option>
+                        <option value="comparison_num_strict">Numercial answer</option>
+                        <option value="comparison_math_equality">Math answer</option>
                     </optgroup>
                 </select>
                 <div style={{ flex: 1 }}>

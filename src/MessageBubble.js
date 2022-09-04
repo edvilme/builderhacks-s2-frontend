@@ -13,6 +13,7 @@ export default function MessageBubble({
 }) {
     const [isAnswered, setIsAnswered] = useState(false);
     const containerRef = createRef();
+
     async function answerQuestion(){
         // Submission
         const submission = prompt("Answer here");
@@ -28,7 +29,7 @@ export default function MessageBubble({
         const result = await resultFetch.json();
         // In case of math
         if(type == "comparison_math_equality")
-            submission = `$${submission}$`
+        submission = `$${submission}$`
         // Create response message
         const message = {
             type: "submission", 
