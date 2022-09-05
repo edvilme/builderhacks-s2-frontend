@@ -51,7 +51,7 @@ export default function Chat({
         <meta property="og:type" content="website" />
         <meta property="og:title" content="πChat" />
         <meta property="og:description" content="Machine Learning to help you study with friends" />
-        <meta property="og:image" content="" />
+        <meta property="og:image" content="/screenshots.png" />
       </Helmet>
       <ChatNav roomId={roomId}></ChatNav>
       <main ref={mainViewRef}>
