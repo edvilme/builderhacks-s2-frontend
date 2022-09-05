@@ -9,6 +9,7 @@ import SystemBubble from "./SystemBubble";
 import ChatNav from "./ChatNav";
 import Confetti from 'react-confetti'
 import Geopattern from 'geopattern';
+import { Helmet } from "react-helmet";
 
 export default function Chat({
   roomId
@@ -44,6 +45,14 @@ export default function Chat({
     <div className="container" style={{
       background: Geopattern.generate(roomId, {color: '#FFF'}).toDataUrl()
     }}>
+      <Helmet>
+        <title>{roomId} - πChat</title>
+        <meta property="og:url" content="https://builderhacks-s2.herokuapp.com/?room=pictionary" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="πChat" />
+        <meta property="og:description" content="Machine Learning to help you study with friends" />
+        <meta property="og:image" content="" />
+      </Helmet>
       <ChatNav roomId={roomId}></ChatNav>
       <main ref={mainViewRef}>
         {chatMessages.map((m, i) => (m.type == "join" ? <SystemBubble user={m.user}></SystemBubble> :
